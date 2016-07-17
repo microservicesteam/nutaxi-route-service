@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: nutaxi-route-service
+  profiles:
+    active: development
+
+---
+
+spring:
+  profiles: development
+  cloud:
+    config:
+      server:
+        bootstrap: true
+        git:
+          uri: file:///tmp/local-config
