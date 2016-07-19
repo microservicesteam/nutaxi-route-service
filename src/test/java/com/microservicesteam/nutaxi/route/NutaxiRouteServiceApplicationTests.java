@@ -1,12 +1,12 @@
 package com.microservicesteam.nutaxi.route;
 
+import static org.hamcrest.Matchers.nullValue;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class NutaxiRouteServiceApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.request", "testRequest").exists())
                 .andExpect(jsonPath("$.response", "testResponse").exists())
-                .andExpect(jsonPath("$.error", Matchers.nullValue()));
+                .andExpect(jsonPath("$.error", nullValue()));
 	}
     
     private static class ARouteDetails implements RouteDetails<String, String, String> {
