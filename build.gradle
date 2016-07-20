@@ -20,6 +20,9 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: "io.franzbecker.gradle-lombok"
 
+group = 'com.microservicesteam'
+version = '0.0.1-SNAPSHOT'
+
 jar {
 	baseName = 'nutaxi-route-service'
 	version = '0.0.1-SNAPSHOT'

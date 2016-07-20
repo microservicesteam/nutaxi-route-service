@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: nutaxi-route-service
+  profiles:
+    active: test
+
+---
+
+spring:
+  profiles: test
+  cloud:
+    config:
+      server:
+        bootstrap: false
