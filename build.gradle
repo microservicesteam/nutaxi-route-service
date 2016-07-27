@@ -3,6 +3,7 @@ buildscript {
 		springBootVersion = '1.4.0.BUILD-SNAPSHOT'
 	}
 	repositories {
+		jcenter()
 		mavenCentral()
 		maven { url "https://repo.spring.io/snapshot" }
 		maven { url "https://repo.spring.io/milestone" }
@@ -11,6 +12,7 @@ buildscript {
 	dependencies {
 		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
 		classpath "io.franzbecker:gradle-lombok:1.6"
+		classpath "org.asciidoctor:asciidoctor-gradle-plugin:1.5.3"
 	}
 }
 
@@ -19,13 +21,18 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: "io.franzbecker.gradle-lombok"
+apply plugin: "org.asciidoctor.convert"
 
 group = 'com.microservicesteam'
 version = '0.0.1-SNAPSHOT'
 
 jar {
+	dependsOn asciidoctor
 	baseName = 'nutaxi-route-service'
-	version = '0.0.1-SNAPSHOT'
+	version = "${version}"
+	from ("${asciidoctor.outputDir}/html5") {
+		into 'static/docs'
+	}
 }
 
 sourceCompatibility = 1.8
@@ -40,6 +47,7 @@ repositories {
 
 ext {
 	googleMapsVersion = '0.1.15'
+	snippetsDir = file('build/generated-snippets')
 }
 
 dependencyManagement {
@@ -60,10 +68,20 @@ dependencies {
 	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')	
 }
 
-
 eclipse {
 	classpath {
 		 containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
 		 containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
 	}
 }
+
+test {
+	outputs.dir snippetsDir
+}
+
+asciidoctor {
+	attributes 'snippets': snippetsDir
+	inputs.dir snippetsDir
+	dependsOn test
+}
+

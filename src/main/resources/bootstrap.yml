@@ -13,4 +13,4 @@ spring:
       server:
         bootstrap: true
         git:
-          uri: file:///tmp/local-config
+          uri: https://github.com/microservicesteam/nutaxi-configs.git
