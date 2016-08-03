@@ -10,7 +10,4 @@ spring:
   profiles: development
   cloud:
     config:
-      server:
-        bootstrap: true
-        git:
-          uri: https://github.com/microservicesteam/nutaxi-configs.git
+      uri: http://localhost:8888
