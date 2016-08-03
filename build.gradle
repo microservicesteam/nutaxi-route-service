@@ -13,8 +13,11 @@ buildscript {
 		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
 		classpath "io.franzbecker:gradle-lombok:1.6"
 		classpath "org.asciidoctor:asciidoctor-gradle-plugin:1.5.3"
+        classpath 'se.transmode.gradle:gradle-docker:1.2'
 	}
 }
+
+import org.apache.tools.ant.filters.ReplaceTokens
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -22,6 +25,7 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: "io.franzbecker.gradle-lombok"
 apply plugin: "org.asciidoctor.convert"
+apply plugin: 'docker'
 
 group = 'com.microservicesteam'
 version = '0.0.1-SNAPSHOT'
@@ -85,3 +89,25 @@ asciidoctor {
 	dependsOn test
 }
 
+docker {
+    baseImage "microservicesteam/nutaxi-java"
+}
+
+task prepareDockerFile(type: Copy, dependsOn: build) {
+    from ('src/main/docker/Dockerfile') {
+        filter(ReplaceTokens, tokens: [valami: "${jar.archiveName}".toString()])
+    }
+    into 'build/docker'
+}
+
+task buildDocker(type: Docker, dependsOn: prepareDockerFile) {
+    //push = true
+    applicationName = jar.baseName
+    dockerfile = file('build/docker/Dockerfile')
+    doFirst {
+        copy {
+            from jar
+            into stageDir
+        }
+    }
+}
