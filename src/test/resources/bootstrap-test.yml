@@ -12,3 +12,6 @@ spring:
     config:
       server:
         bootstrap: false
+eureka:
+  client:
+    enabled: false

@@ -97,7 +97,7 @@ docker {
 
 task prepareDockerFile(type: Copy, dependsOn: build) {
     from ('src/main/docker/Dockerfile') {
-        filter(ReplaceTokens, tokens: [valami: "${jar.archiveName}".toString()])
+        filter(ReplaceTokens, tokens: [artifact: "${jar.archiveName}".toString()])
     }
     into 'build/docker'
 }
