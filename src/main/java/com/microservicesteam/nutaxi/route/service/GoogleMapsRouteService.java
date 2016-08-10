@@ -27,22 +27,22 @@ public class GoogleMapsRouteService implements RouteService {
         GoogleMapsRouteDetailsBuilder routeDetailsBuilder = GoogleMapsRouteDetails.builder();
         GoogleMapsDirectionsRequest directionsRequest = createRequest(origin, destination, language);
         routeDetailsBuilder.request(directionsRequest);
-        
+
         doRequestAndWait(routeDetailsBuilder, directionsRequest);
 
         return routeDetailsBuilder.build();
     }
 
-    private GoogleMapsDirectionsRequest createRequest(String origin, String destination, String language) {
+    private static GoogleMapsDirectionsRequest createRequest(String origin, String destination, String language) {
         return GoogleMapsDirectionsRequest.builder()
-            .origin(origin)
-            .destination(destination)
-            .mode(DRIVING)
-            .units(METRIC)
-            .language(language)
-            .build();
+                .origin(origin)
+                .destination(destination)
+                .mode(DRIVING)
+                .units(METRIC)
+                .language(language)
+                .build();
     }
-    
+
     private void doRequestAndWait(GoogleMapsRouteDetailsBuilder routeDetailsBuilder,
             GoogleMapsDirectionsRequest directionsRequest) {
         try {

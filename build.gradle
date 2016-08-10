@@ -26,6 +26,7 @@ apply plugin: 'spring-boot'
 apply plugin: "io.franzbecker.gradle-lombok"
 apply plugin: "org.asciidoctor.convert"
 apply plugin: 'docker'
+apply plugin: 'jacoco'
 
 group = 'com.microservicesteam'
 version = '0.0.1-SNAPSHOT'
@@ -97,7 +98,7 @@ docker {
 
 task prepareDockerFile(type: Copy, dependsOn: build) {
     from ('src/main/docker/Dockerfile') {
-        filter(ReplaceTokens, tokens: [valami: "${jar.archiveName}".toString()])
+        filter(ReplaceTokens, tokens: [artifact: "${jar.archiveName}".toString()])
     }
     into 'build/docker'
 }
@@ -113,3 +114,16 @@ task buildDocker(type: Docker, dependsOn: prepareDockerFile) {
         }
     }
 }
+
+jacoco {
+    toolVersion = "0.7.7.201606060606"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+check.dependsOn jacocoTestReport
