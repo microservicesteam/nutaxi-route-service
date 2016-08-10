@@ -1,6 +1,7 @@
 # nutaxi-route-service
 
-[![Build Status](https://travis-ci.org/microservicesteam/nutaxi-route-service.svg?branch=master)](https://travis-ci.org/microservicesteam/nutaxi-route-service)
+[![Build Status of nutaxi-route-service](https://travis-ci.org/microservicesteam/nutaxi-route-service.svg?branch=master)](https://travis-ci.org/microservicesteam/nutaxi-route-service) [![Code covarage of nutaxi-route-service](https://codecov.io/gh/microservicesteam/nutaxi-route-service/branch/master/graph/badge.svg)](https://codecov.io/gh/microservicesteam/nutaxi-route-service)
+
 
 Routing service is responsible to provide a route for origin-destination pair
 
