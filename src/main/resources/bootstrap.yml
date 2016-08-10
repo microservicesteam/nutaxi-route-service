@@ -10,4 +10,4 @@ spring:
   profiles: development
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://54.80.121.92:8888
