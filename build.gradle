@@ -27,6 +27,9 @@ apply plugin: "io.franzbecker.gradle-lombok"
 apply plugin: "org.asciidoctor.convert"
 apply plugin: 'docker'
 apply plugin: 'jacoco'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+
 
 group = 'com.microservicesteam'
 version = '0.0.1-SNAPSHOT'
@@ -114,6 +117,15 @@ task buildDocker(type: Docker, dependsOn: prepareDockerFile) {
         }
     }
 }
+
+pmd {
+	toolVersion = "5.5.1"
+}
+
+findbugs {
+	toolVersion = "3.0.1"
+}
+
 
 jacoco {
     toolVersion = "0.7.7.201606060606"
