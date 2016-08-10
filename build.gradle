@@ -26,6 +26,10 @@ apply plugin: 'spring-boot'
 apply plugin: "io.franzbecker.gradle-lombok"
 apply plugin: "org.asciidoctor.convert"
 apply plugin: 'docker'
+apply plugin: 'jacoco'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+
 
 group = 'com.microservicesteam'
 version = '0.0.1-SNAPSHOT'
@@ -103,7 +107,6 @@ task prepareDockerFile(type: Copy, dependsOn: build) {
 }
 
 task buildDocker(type: Docker, dependsOn: prepareDockerFile) {
-    //push = true
     applicationName = jar.baseName
     tag = "microservicesteam/${jar.baseName}"
     dockerfile = file('build/docker/Dockerfile')
@@ -118,3 +121,25 @@ task buildDocker(type: Docker, dependsOn: prepareDockerFile) {
 task publishDocker(type: Docker, dependsOn: buildDocker) {
     push = true
 }
+
+pmd {
+	toolVersion = "5.5.1"
+}
+
+findbugs {
+	toolVersion = "3.0.1"
+}
+
+
+jacoco {
+    toolVersion = "0.7.7.201606060606"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+check.dependsOn jacocoTestReport

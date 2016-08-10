@@ -12,10 +12,9 @@ public class RouteConfig {
     @Value("${google-maps.api-key}")
     private String apiKey;
 
-    
     @Bean
     public GeoApiContext geoApiContext() {
         return new GeoApiContext().setApiKey(apiKey);
     }
-    
+
 }
