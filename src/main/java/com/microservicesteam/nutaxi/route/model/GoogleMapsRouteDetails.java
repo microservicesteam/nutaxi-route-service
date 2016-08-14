@@ -5,6 +5,7 @@ import com.google.maps.model.DirectionsResult;
 import lombok.Builder;
 import lombok.Getter;
 
+@SuppressWarnings("PMD")
 @Builder
 public class GoogleMapsRouteDetails implements RouteDetails<GoogleMapsDirectionsRequest, DirectionsResult, String> {
 

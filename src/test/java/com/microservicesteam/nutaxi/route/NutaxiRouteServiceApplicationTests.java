@@ -41,7 +41,7 @@ public class NutaxiRouteServiceApplicationTests {
     private static final String TEST_REQUEST = "{\"origin\":\"Budapest Futó u. 47\",\"destination\":\"Budapest Corvin-negyed\",\"mode\":\"DRIVING\",\"units\":\"METRIC\",\"language\":\"hu\"}";
 
     @Rule
-    public JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation("build/generated-snippets");
+    public JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation("target/generated-snippets");
 
     @MockBean
     private RouteService mockRouteService;
