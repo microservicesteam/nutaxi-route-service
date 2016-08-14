@@ -111,8 +111,8 @@ task prepareDockerFile(type: Copy, dependsOn: build) {
 }
 
 task buildDocker(type: Docker, dependsOn: prepareDockerFile) {
-    //push = true
     applicationName = jar.baseName
+    tag = "microservicesteam/${jar.baseName}"
     dockerfile = file('build/docker/Dockerfile')
     doFirst {
         copy {
@@ -120,6 +120,10 @@ task buildDocker(type: Docker, dependsOn: prepareDockerFile) {
             into stageDir
         }
     }
+}
+
+task publishDocker(type: Docker, dependsOn: buildDocker) {
+    push = true
 }
 
 pmd {
