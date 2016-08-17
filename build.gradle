@@ -14,6 +14,8 @@ buildscript {
 		classpath "io.franzbecker:gradle-lombok:1.6"
 		classpath "org.asciidoctor:asciidoctor-gradle-plugin:1.5.3"
         classpath 'se.transmode.gradle:gradle-docker:1.2'
+        classpath 'org.apache.httpcomponents:httpclient:4.5.2'        
+        classpath "de.undercouch:gradle-download-task:3.1.1"
 	}
 }
 
@@ -27,6 +29,11 @@ apply plugin: "io.franzbecker.gradle-lombok"
 apply plugin: "org.asciidoctor.convert"
 apply plugin: 'docker'
 apply plugin: 'jacoco'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+apply plugin: 'de.undercouch.download'
+apply plugin: 'checkstyle'
+
 
 group = 'com.microservicesteam'
 version = '0.0.1-SNAPSHOT'
@@ -104,8 +111,8 @@ task prepareDockerFile(type: Copy, dependsOn: build) {
 }
 
 task buildDocker(type: Docker, dependsOn: prepareDockerFile) {
-    //push = true
     applicationName = jar.baseName
+    tag = "microservicesteam/${jar.baseName}"
     dockerfile = file('build/docker/Dockerfile')
     doFirst {
         copy {
@@ -114,6 +121,19 @@ task buildDocker(type: Docker, dependsOn: prepareDockerFile) {
         }
     }
 }
+
+task publishDocker(type: Docker, dependsOn: buildDocker) {
+    push = true
+}
+
+pmd {
+	toolVersion = "5.5.1"
+}
+
+findbugs {
+	toolVersion = "3.0.1"
+}
+
 
 jacoco {
     toolVersion = "0.7.7.201606060606"
@@ -126,4 +146,16 @@ jacocoTestReport {
     }
 }
 
+task checkstyleConfigDownload(type: de.undercouch.gradle.tasks.download.Download) {
+    src 'https://raw.githubusercontent.com/microservicesteam/nutaxi-dev/master/config/checkstyle/checkstyle.xml'
+    dest buildDir
+}
+
+checkstyle {
+    toolVersion = "7.1"
+    configFile = new File(buildDir, "checkstyle.xml")
+}
+
+checkstyleMain.dependsOn checkstyleConfigDownload
+checkstyleTest.dependsOn checkstyleConfigDownload
 check.dependsOn jacocoTestReport
