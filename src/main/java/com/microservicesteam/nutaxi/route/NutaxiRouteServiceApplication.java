@@ -21,6 +21,6 @@ public class NutaxiRouteServiceApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(NutaxiRouteServiceApplication.class, args).close();
+        SpringApplication.run(NutaxiRouteServiceApplication.class, args);
     }
 }
