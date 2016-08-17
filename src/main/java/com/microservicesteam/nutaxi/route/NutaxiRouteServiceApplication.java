@@ -25,7 +25,7 @@ public class NutaxiRouteServiceApplication {
     }
 
     @Bean
-    @Profile("!default")
+    @Profile("docker-aws")
     public EurekaInstanceConfigBean eurekaInstanceConfig(InetUtils inetUtils) {
         EurekaInstanceConfigBean b = new EurekaInstanceConfigBean(inetUtils);
         AmazonInfo info = AmazonInfo.Builder.newBuilder().autoBuild("eureka");
