@@ -27,9 +27,12 @@ public class NutaxiRouteServiceApplication {
     @Bean
     @Profile("docker-aws")
     public EurekaInstanceConfigBean eurekaInstanceConfig(InetUtils inetUtils) {
-        EurekaInstanceConfigBean config = new EurekaInstanceConfigBean(inetUtils);
+    	EurekaInstanceConfigBean config = new EurekaInstanceConfigBean(inetUtils);
         AmazonInfo info = AmazonInfo.Builder.newBuilder().autoBuild("eureka");
         config.setDataCenterInfo(info);
+        info.getMetadata().put(AmazonInfo.MetaDataKey.publicHostname.getName(), info.get(AmazonInfo.MetaDataKey.publicIpv4));
+        config.setHostname(info.get(AmazonInfo.MetaDataKey.publicHostname));
+        config.setIpAddress(info.get(AmazonInfo.MetaDataKey.publicIpv4));
         return config;
     }
 
