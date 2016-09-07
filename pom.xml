@@ -28,6 +28,17 @@
         <java.version>1.8</java.version>
         <snippetsDirectory>${project.build.directory}/generated-snippets</snippetsDirectory>
         <artifact>${project.build.finalName}.jar</artifact>
+        
+        <common-io.version>2.4</common-io.version>
+        <google-maps-services.version>0.1.15</google-maps-services.version>
+        <commons-lang3.version>3.4</commons-lang3.version>
+        <asciidoctor-maven-plugin.version>1.5.3</asciidoctor-maven-plugin.version>
+        <docker-maven-plugin.version>0.4.11</docker-maven-plugin.version>
+        <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
+        <maven-pmd-plugin.version>3.6</maven-pmd-plugin.version>
+        <findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
+        <jacoco-maven-plugin>0.7.7.201606060606</jacoco-maven-plugin>
+        <versioneye-maven-plugin>3.10.2</versioneye-maven-plugin>
     </properties>
 
     <dependencies>
@@ -64,13 +75,13 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.4</version>
+            <version>${common-io.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.google.maps</groupId>
             <artifactId>google-maps-services</artifactId>
-            <version>0.1.15</version>
+            <version>${google-maps-services.version}</version>
         </dependency>
 
         <dependency>
@@ -86,7 +97,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
+            <version>${commons-lang3.version}</version>
         </dependency>
     </dependencies>
 
@@ -146,7 +157,7 @@
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>1.5.3</version>
+                <version>${asciidoctor-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>generate-docs</id>
@@ -167,7 +178,7 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.4.11</version>
+                <version>${docker-maven-plugin.version}</version>
                 <configuration>
                     <imageName>${project.organization.name}/${project.name}</imageName>
                     <dockerDirectory>${project.build.directory}/docker</dockerDirectory>
@@ -188,7 +199,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.17</version>
+                <version>${maven-checkstyle-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>validate</id>
@@ -209,7 +220,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.6</version>
+                <version>${maven-pmd-plugin.version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -222,7 +233,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.4</version>
+                <version>${findbugs-maven-plugin.version}</version>
                 <configuration>
                     <effort>Max</effort>
                     <threshold>Low</threshold>
@@ -239,7 +250,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.7.201606060606</version>
+                <version>${jacoco-maven-plugin}</version>
                 <executions>
                     <execution>
                         <id>default-prepare-agent</id>
@@ -270,7 +281,7 @@
             <plugin>
                 <groupId>com.versioneye</groupId>
                 <artifactId>versioneye-maven-plugin</artifactId>
-                <version>3.10.2</version>
+                <version>${versioneye-maven-plugin}</version>
                 <configuration>
                     <apiKey>21bf0e87b5bec74c40d8</apiKey>
                     <projectId>57d03f4d864739000ef97460</projectId>
