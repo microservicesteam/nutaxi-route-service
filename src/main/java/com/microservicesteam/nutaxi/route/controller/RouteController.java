@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.microservicesteam.nutaxi.route.model.RouteDetails;
-import com.microservicesteam.nutaxi.route.service.RouteService;
+import com.microservicesteam.nutaxi.route.model.GoogleMapsRouteDetails;
+import com.microservicesteam.nutaxi.route.service.GoogleMapsRouteService;
 
 @RestController
 @RequestMapping("/api/route")
@@ -20,10 +20,10 @@ public class RouteController {
     private static final Logger LOGGER = LoggerFactory.getLogger(RouteController.class);
 
     @Autowired
-    private RouteService routeService;
+    private GoogleMapsRouteService routeService;
 
     @GetMapping
-    public RouteDetails<?, ?, ?> route(@RequestParam String origin, @RequestParam String destination, Locale locale) {
+    public GoogleMapsRouteDetails route(@RequestParam String origin, @RequestParam String destination, Locale locale) {
         LOGGER.debug("Querying route from '{}' to '{}' with locale {}", origin, destination, locale.getLanguage());
         return routeService.getRoute(origin, destination, locale.getLanguage());
     }

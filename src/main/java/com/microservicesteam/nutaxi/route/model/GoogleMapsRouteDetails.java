@@ -2,12 +2,22 @@ package com.microservicesteam.nutaxi.route.model;
 
 import com.google.maps.model.DirectionsResult;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @SuppressWarnings("PMD")
+@Data
+@ToString
 @Builder
-public class GoogleMapsRouteDetails implements RouteDetails<GoogleMapsDirectionsRequest, DirectionsResult, String> {
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+public class GoogleMapsRouteDetails {
 
     @Getter
     private GoogleMapsDirectionsRequest request;

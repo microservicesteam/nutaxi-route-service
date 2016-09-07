@@ -12,18 +12,16 @@ import com.google.maps.GeoApiContext;
 import com.microservicesteam.nutaxi.route.model.GoogleMapsDirectionsRequest;
 import com.microservicesteam.nutaxi.route.model.GoogleMapsRouteDetails;
 import com.microservicesteam.nutaxi.route.model.GoogleMapsRouteDetails.GoogleMapsRouteDetailsBuilder;
-import com.microservicesteam.nutaxi.route.model.RouteDetails;
 
 @Service
-public class GoogleMapsRouteService implements RouteService {
+public class GoogleMapsRouteService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GoogleMapsRouteService.class);
 
     @Autowired
     private GeoApiContext context;
 
-    @Override
-    public RouteDetails<?, ?, ?> getRoute(String origin, String destination, String language) {
+    public GoogleMapsRouteDetails getRoute(String origin, String destination, String language) {
         GoogleMapsRouteDetailsBuilder routeDetailsBuilder = GoogleMapsRouteDetails.builder();
         GoogleMapsDirectionsRequest directionsRequest = createRequest(origin, destination, language);
         routeDetailsBuilder.request(directionsRequest);
