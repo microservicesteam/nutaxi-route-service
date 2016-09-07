@@ -267,6 +267,15 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.versioneye</groupId>
+                <artifactId>versioneye-maven-plugin</artifactId>
+                <version>3.10.2</version>
+                <configuration>
+                    <apiKey>21bf0e87b5bec74c40d8</apiKey>
+                    <projectId>57d03f4d864739000ef97460</projectId>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

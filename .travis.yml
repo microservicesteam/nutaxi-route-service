@@ -3,5 +3,6 @@ jdk:
   oraclejdk8
 script:
   - ./mvnw clean install
+  - ./mvnw versioneye:update
 after_success:
   - bash <(curl -s https://codecov.io/bash)
