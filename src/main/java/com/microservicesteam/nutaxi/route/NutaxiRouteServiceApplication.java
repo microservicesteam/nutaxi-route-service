@@ -1,7 +1,6 @@
 package com.microservicesteam.nutaxi.route;
 
-import static com.google.maps.model.TravelMode.DRIVING;
-import static com.google.maps.model.Unit.METRIC;
+import static com.microservicesteam.nutaxi.route.GoogleMapsDirectionsRequest.drivingDirectionsRequest;
 
 import java.util.Locale;
 
@@ -78,22 +77,12 @@ public class NutaxiRouteServiceApplication {
 
         public GoogleMapsRouteDetails getRoute(String origin, String destination, String language) {
             GoogleMapsRouteDetailsBuilder routeDetailsBuilder = GoogleMapsRouteDetails.builder();
-            GoogleMapsDirectionsRequest directionsRequest = createRequest(origin, destination, language);
+            GoogleMapsDirectionsRequest directionsRequest = drivingDirectionsRequest(origin, destination, language);
             routeDetailsBuilder.request(directionsRequest);
 
             doRequestAndWait(routeDetailsBuilder, directionsRequest);
 
             return routeDetailsBuilder.build();
-        }
-
-        private static GoogleMapsDirectionsRequest createRequest(String origin, String destination, String language) {
-            return GoogleMapsDirectionsRequest.builder()
-                    .origin(origin)
-                    .destination(destination)
-                    .mode(DRIVING)
-                    .units(METRIC)
-                    .language(language)
-                    .build();
         }
 
         private void doRequestAndWait(GoogleMapsRouteDetailsBuilder routeDetailsBuilder,

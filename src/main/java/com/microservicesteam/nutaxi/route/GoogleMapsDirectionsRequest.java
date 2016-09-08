@@ -1,5 +1,8 @@
 package com.microservicesteam.nutaxi.route;
 
+import static com.google.maps.model.TravelMode.DRIVING;
+import static com.google.maps.model.Unit.METRIC;
+
 import com.google.maps.DirectionsApi;
 import com.google.maps.DirectionsApiRequest;
 import com.google.maps.GeoApiContext;
@@ -44,6 +47,16 @@ public class GoogleMapsDirectionsRequest {
                 .mode(mode)
                 .units(units)
                 .language(language);
+    }
+
+    public static GoogleMapsDirectionsRequest drivingDirectionsRequest(String origin, String destination, String language) {
+        return GoogleMapsDirectionsRequest.builder()
+                .origin(origin)
+                .destination(destination)
+                .mode(DRIVING)
+                .units(METRIC)
+                .language(language)
+                .build();
     }
 
 }
