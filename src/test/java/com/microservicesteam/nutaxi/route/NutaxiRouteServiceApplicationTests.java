@@ -32,9 +32,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsRoute;
-import com.microservicesteam.nutaxi.route.model.GoogleMapsDirectionsRequest;
-import com.microservicesteam.nutaxi.route.model.GoogleMapsRouteDetails;
-import com.microservicesteam.nutaxi.route.service.GoogleMapsRouteService;
+import com.microservicesteam.nutaxi.route.NutaxiRouteServiceApplication.GoogleMapsRouteService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest

@@ -1,4 +1,4 @@
-package com.microservicesteam.nutaxi.route.model;
+package com.microservicesteam.nutaxi.route;
 
 import com.google.maps.DirectionsApi;
 import com.google.maps.DirectionsApiRequest;
