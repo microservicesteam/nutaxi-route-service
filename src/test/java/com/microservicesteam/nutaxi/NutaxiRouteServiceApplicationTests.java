@@ -1,4 +1,4 @@
-package com.microservicesteam.nutaxi.route;
+package com.microservicesteam.nutaxi;
 
 import static com.google.maps.model.TravelMode.DRIVING;
 import static com.google.maps.model.Unit.METRIC;
@@ -32,7 +32,9 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsRoute;
-import com.microservicesteam.nutaxi.route.NutaxiRouteServiceApplication.GoogleMapsRouteService;
+import com.microservicesteam.nutaxi.route.googlemaps.GoogleMapsDirectionsRequest;
+import com.microservicesteam.nutaxi.route.googlemaps.GoogleMapsRouteDetails;
+import com.microservicesteam.nutaxi.route.googlemaps.GoogleMapsRouteService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest
