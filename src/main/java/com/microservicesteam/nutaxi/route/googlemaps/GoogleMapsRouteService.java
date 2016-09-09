@@ -16,8 +16,12 @@ public class GoogleMapsRouteService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GoogleMapsRouteService.class);
 
-    @Autowired
     private GeoApiContext context;
+
+    @Autowired
+    public GoogleMapsRouteService(GeoApiContext context) {
+        this.context = context;
+    }
 
     public GoogleMapsRouteDetails getRoute(String origin, String destination, String language) {
         GoogleMapsRouteDetailsBuilder routeDetailsBuilder = GoogleMapsRouteDetails.builder();
