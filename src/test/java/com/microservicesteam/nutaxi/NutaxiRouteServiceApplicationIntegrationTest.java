@@ -39,7 +39,7 @@ import com.microservicesteam.nutaxi.route.googlemaps.GoogleMapsRouteService;
 @RunWith(SpringRunner.class)
 @WebMvcTest
 @ActiveProfiles("test")
-public class NutaxiRouteServiceApplicationTests {
+public class NutaxiRouteServiceApplicationIntegrationTest {
 
     @Rule
     public JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation("target/generated-snippets");
