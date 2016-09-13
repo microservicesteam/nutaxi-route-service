@@ -28,11 +28,6 @@ public class RandomPortListenerTest {
     }
     
     @Test
-    public void shouldReturnWithZeroPortBeforeContainerInitialisationEvent() {
-        assertThat(underTest.getPort()).isEqualTo(0);
-    }
-    
-    @Test
     public void shouldReturnContainerPortAfterContainerInitialisationEvent() {
         int testPort = 47253;
         when(mockEmbeddedServletContainer.getPort()).thenReturn(testPort);

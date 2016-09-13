@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Profile("docker-aws")
 public class RandomPortListener implements ApplicationListener<EmbeddedServletContainerInitializedEvent> {
 
-    private int port = 0;
+    private int port;
     
     @Override
     public void onApplicationEvent(EmbeddedServletContainerInitializedEvent event) {

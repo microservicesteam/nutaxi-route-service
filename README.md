@@ -25,6 +25,12 @@ The new docker image will be pushed to the local image repository named  `micros
 
 Note that the docker plugin is not bound to any lifecycle events, therefore it should be executed alongside with `package` or `install` goals.
 
+The created image will execute the application with `default` profile. In case you would like to use another profile, use `-Ddocker-spring-profile=<profile>` parameter as below:
+
+```
+mvn clean install docker:build -Ddocker-spring-profile=docker-aws
+```
+
 **Hint for Windows/Mac users**
 
 `docker-machine` have to be accessible for the current bash/powershell session. In case the maven docker plugin cannot connect (`Connect to localhost:2375 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect`) execute the following command:

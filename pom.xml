@@ -28,6 +28,7 @@
         <java.version>1.8</java.version>
         <snippetsDirectory>${project.build.directory}/generated-snippets</snippetsDirectory>
         <artifact>${project.build.finalName}.jar</artifact>
+        <docker-spring-profile>default</docker-spring-profile>
         
         <common-io.version>2.5</common-io.version>
         <google-maps-services.version>0.1.15</google-maps-services.version>
