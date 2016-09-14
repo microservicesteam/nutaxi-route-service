@@ -1,15 +1,12 @@
 package com.microservicesteam.nutaxi.route.googlemaps;
 
-import org.junit.Test;
-import org.meanbean.test.BeanTester;
+import com.microservicesteam.nutaxi.infrastructure.PojoTester;
 
-public class GoogleMapsRouteDetailsTest {
+public class GoogleMapsRouteDetailsTest extends PojoTester {
 
-    private final BeanTester beanTester = new BeanTester();
-
-    @Test
-    public void test() {
-        beanTester.testBean(GoogleMapsRouteDetails.class);
+    @Override
+    protected Class<?> getPojoClass() {
+        return GoogleMapsRouteDetails.class;
     }
 
 }
