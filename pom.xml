@@ -29,7 +29,7 @@
         <snippetsDirectory>${project.build.directory}/generated-snippets</snippetsDirectory>
         <artifact>${project.build.finalName}.jar</artifact>
         <docker-spring-profile>default</docker-spring-profile>
-        
+
         <common-io.version>2.5</common-io.version>
         <google-maps-services.version>0.1.15</google-maps-services.version>
         <commons-lang3.version>3.4</commons-lang3.version>
@@ -38,8 +38,9 @@
         <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
         <maven-pmd-plugin.version>3.6</maven-pmd-plugin.version>
         <findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
-        <jacoco-maven-plugin>0.7.7.201606060606</jacoco-maven-plugin>
-        <versioneye-maven-plugin>3.10.2</versioneye-maven-plugin>
+        <jacoco-maven-plugin.version>0.7.7.201606060606</jacoco-maven-plugin.version>
+        <versioneye-maven-plugin.version>3.10.2</versioneye-maven-plugin.version>
+        <meanbean.version>2.0.3</meanbean.version>
     </properties>
 
     <dependencies>
@@ -100,6 +101,23 @@
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.meanbean</groupId>
+            <artifactId>meanbean</artifactId>
+            <version>${meanbean.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -139,7 +157,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <includes>
-                        <include>**/*Test.java</include>                        
+                        <include>**/*Test.java</include>
                         <include>**/*Tests.java</include>
                     </includes>
                 </configuration>
@@ -252,7 +270,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco-maven-plugin}</version>
+                <version>${jacoco-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>default-prepare-agent</id>
@@ -283,7 +301,7 @@
             <plugin>
                 <groupId>com.versioneye</groupId>
                 <artifactId>versioneye-maven-plugin</artifactId>
-                <version>${versioneye-maven-plugin}</version>
+                <version>${versioneye-maven-plugin.version}</version>
                 <configuration>
                     <apiKey>21bf0e87b5bec74c40d8</apiKey>
                     <projectId>57d03f4d864739000ef97460</projectId>
