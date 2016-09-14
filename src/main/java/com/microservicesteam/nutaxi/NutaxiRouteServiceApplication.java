@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
 import com.google.maps.GeoApiContext;
+import com.microservicesteam.nutaxi.infrastructure.RandomPortListener;
 import com.netflix.appinfo.AmazonInfo;
 
 @EnableDiscoveryClient

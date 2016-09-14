@@ -11,6 +11,8 @@ import org.springframework.cloud.commons.util.InetUtils;
 import org.springframework.cloud.commons.util.InetUtilsProperties;
 import org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean;
 
+import com.microservicesteam.nutaxi.infrastructure.RandomPortListener;
+
 @RunWith(MockitoJUnitRunner.class)
 public class NutaxiRouteServiceApplicationTest { 
     
