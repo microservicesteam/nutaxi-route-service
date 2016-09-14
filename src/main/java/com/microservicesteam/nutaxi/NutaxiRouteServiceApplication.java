@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
 import com.google.maps.GeoApiContext;
-import com.microservicesteam.nutaxi.infrastructure.RandomPortListener;
+import com.microservicesteam.nutaxi.infrastructure.EmbeddedServletContainerRandomPortListener;
 import com.netflix.appinfo.AmazonInfo;
 
 @EnableDiscoveryClient
@@ -27,7 +27,7 @@ public class NutaxiRouteServiceApplication {
 
     @Bean
     @Profile("docker-aws")
-    public EurekaInstanceConfigBean eurekaInstanceConfig(InetUtils inetUtils, RandomPortListener portListener) {
+    public EurekaInstanceConfigBean eurekaInstanceConfig(InetUtils inetUtils, EmbeddedServletContainerRandomPortListener portListener) {
         EurekaInstanceConfigBean config = new EurekaInstanceConfigBean(inetUtils);
         AmazonInfo info = AmazonInfo.Builder.newBuilder().autoBuild("eureka");
         config.setDataCenterInfo(info);

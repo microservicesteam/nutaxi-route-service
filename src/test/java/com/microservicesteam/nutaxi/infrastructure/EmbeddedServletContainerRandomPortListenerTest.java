@@ -11,10 +11,10 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.boot.context.embedded.EmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerInitializedEvent;
 
-import com.microservicesteam.nutaxi.infrastructure.RandomPortListener;
+import com.microservicesteam.nutaxi.infrastructure.EmbeddedServletContainerRandomPortListener;
 
 @RunWith(MockitoJUnitRunner.class)
-public class RandomPortListenerTest {
+public class EmbeddedServletContainerRandomPortListenerTest {
 
     @Mock
     private EmbeddedServletContainerInitializedEvent mockEmbeddedServletContainerInitializedEvent;
@@ -22,11 +22,11 @@ public class RandomPortListenerTest {
     @Mock
     private EmbeddedServletContainer mockEmbeddedServletContainer;
 
-    private RandomPortListener underTest;
+    private EmbeddedServletContainerRandomPortListener underTest;
 
     @Before
     public void init() {
-        underTest = new RandomPortListener();
+        underTest = new EmbeddedServletContainerRandomPortListener();
     }
 
     @Test

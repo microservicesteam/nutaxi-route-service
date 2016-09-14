@@ -13,14 +13,14 @@ import com.google.maps.GeoApiContext;
 @RunWith(MockitoJUnitRunner.class)
 public class GoogleMapsRouteServiceTest {
 
-    GoogleMapsRouteService serviceUnderTest;
+    private GoogleMapsRouteService underTest;
 
     @Mock
-    GeoApiContext context;
+    private GeoApiContext context;
 
     @Before
     public void init() {
-        serviceUnderTest = new GoogleMapsRouteService(context);
+        underTest = new GoogleMapsRouteService(context);
     }
 
     @Test
@@ -29,7 +29,7 @@ public class GoogleMapsRouteServiceTest {
         String destination = "Budapest";
         String language = "hu";
 
-        GoogleMapsRouteDetails result = serviceUnderTest.getRoute(origin, destination, language);
+        GoogleMapsRouteDetails result = underTest.getRoute(origin, destination, language);
 
         assertThat(result).isNotNull();
     }
