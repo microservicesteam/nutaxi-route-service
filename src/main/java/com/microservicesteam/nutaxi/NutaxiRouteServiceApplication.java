@@ -19,7 +19,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import com.google.maps.GeoApiContext;
 import com.microservicesteam.nutaxi.infrastructure.EmbeddedServletContainerRandomPortListener;
 import com.microservicesteam.nutaxi.infrastructure.KryoRedisSerializer;
-import com.microservicesteam.nutaxi.route.googlemaps.GoogleMapsRouteDetails;
+import com.microservicesteam.nutaxi.route.Route;
 import com.netflix.appinfo.AmazonInfo;
 
 @EnableDiscoveryClient
@@ -42,7 +42,7 @@ public class NutaxiRouteServiceApplication extends CachingConfigurerSupport {
     public RedisTemplate template() {
         RedisTemplate template = new RedisTemplate<>();
         template.setConnectionFactory(connectionFactory);
-        template.setDefaultSerializer(new KryoRedisSerializer(GoogleMapsRouteDetails.class));
+        template.setDefaultSerializer(new KryoRedisSerializer(Route.class));
 
         return template;
     }
