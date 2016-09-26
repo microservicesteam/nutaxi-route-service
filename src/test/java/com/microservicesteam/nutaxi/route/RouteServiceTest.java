@@ -34,10 +34,10 @@ public class RouteServiceTest {
 
     @Test
     public void shouldReturnWithRoute() {
-        when(googleMapsRouteService.getDirections("Budapest", "Szeged", "hu"))
+        when(googleMapsRouteService.getDirections(getRouteRequest()))
                 .thenReturn(Optional.of(getDirections()));
 
-        Optional<Route> route = underTest.getRoute("Budapest", "Szeged", "hu");
+        Optional<Route> route = underTest.getRoute(getRouteRequest());
 
         assertThat(route.isPresent()).isTrue();
         assertThat(route.get().getOverviewPolylines()).hasSize(1);
@@ -46,12 +46,20 @@ public class RouteServiceTest {
 
     @Test
     public void shouldNotReturnWithRouteWhenNoGoogleDirectionReturned() {
-        when(googleMapsRouteService.getDirections("Budapest", "Szeged", "hu"))
+        when(googleMapsRouteService.getDirections(getRouteRequest()))
                 .thenReturn(Optional.empty());
 
-        Optional<Route> route = underTest.getRoute("Budapest", "Szeged", "hu");
+        Optional<Route> route = underTest.getRoute(getRouteRequest());
 
         assertThat(route.isPresent()).isFalse();
+    }
+
+    private static RouteRequest getRouteRequest() {
+        return RouteRequest.builder()
+                .origin("Budapest")
+                .destination("Szeged")
+                .language("hu")
+                .build();
     }
 
     private static DirectionsResult getDirections() {

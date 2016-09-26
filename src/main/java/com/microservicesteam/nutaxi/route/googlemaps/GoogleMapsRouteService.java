@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.maps.GeoApiContext;
 import com.google.maps.model.DirectionsResult;
+import com.microservicesteam.nutaxi.route.RouteRequest;
 
 @Service
 public class GoogleMapsRouteService {
@@ -25,13 +26,13 @@ public class GoogleMapsRouteService {
         this.context = context;
     }
 
-    public Optional<DirectionsResult> getDirections(String origin, String destination, String language) {
+    public Optional<DirectionsResult> getDirections(RouteRequest routeRequest) {
         GoogleMapsDirectionsRequest directionsRequest = GoogleMapsDirectionsRequest.builder()
-                .origin(origin)
-                .destination(destination)
+                .origin(routeRequest.getOrigin())
+                .destination(routeRequest.getDestination())
                 .mode(DRIVING)
                 .units(METRIC)
-                .language(language)
+                .language(routeRequest.getDestination())
                 .build();
 
         try {

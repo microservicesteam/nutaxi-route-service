@@ -22,8 +22,8 @@ public class RouteService {
         this.googleMapsRouteService = googleMapsRouteService;
     }
 
-    public Optional<Route> getRoute(String origin, String destination, String language) {
-        Optional<DirectionsResult> directions = googleMapsRouteService.getDirections(origin, destination, language);
+    public Optional<Route> getRoute(RouteRequest request) {
+        Optional<DirectionsResult> directions = googleMapsRouteService.getDirections(request);
 
         if (directions.isPresent()) {
             List<String> overviewPolylines = stream(directions.get().routes)

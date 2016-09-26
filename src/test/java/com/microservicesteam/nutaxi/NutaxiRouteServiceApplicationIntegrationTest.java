@@ -2,7 +2,6 @@ package com.microservicesteam.nutaxi;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static org.hamcrest.Matchers.equalTo;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -21,6 +20,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -66,7 +66,7 @@ public class NutaxiRouteServiceApplicationIntegrationTest {
 
     @Test
     public void getRoute() throws Exception {
-        when(mockRouteService.getRoute(anyString(), anyString(), anyString())).thenReturn(Optional.of(Route.builder()
+        when(mockRouteService.getRoute(Mockito.anyObject())).thenReturn(Optional.of(Route.builder()
                 .overviewPolylines(newArrayList(DUMMY_POLYLINE))
                 .build()));
 
