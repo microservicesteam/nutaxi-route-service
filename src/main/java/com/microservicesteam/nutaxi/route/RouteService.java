@@ -4,12 +4,12 @@ import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.maps.model.DirectionsResult;
-import com.microservicesteam.nutaxi.route.googlemaps.GoogleMapsRouteDetails;
 import com.microservicesteam.nutaxi.route.googlemaps.GoogleMapsRouteService;
 
 @Service
@@ -22,15 +22,19 @@ public class RouteService {
         this.googleMapsRouteService = googleMapsRouteService;
     }
 
-    public Route getRoute(String origin, String destination, String language) {
-        GoogleMapsRouteDetails route = googleMapsRouteService.getRoute(origin, destination, language);
-        DirectionsResult response = route.getResponse();
-        List<String> overviewPolylines = stream(response.routes)
-                .map(googleMapsRoute -> googleMapsRoute.overviewPolyline.getEncodedPath()).collect(toList());
+    public Optional<Route> getRoute(String origin, String destination, String language) {
+        Optional<DirectionsResult> directions = googleMapsRouteService.getDirections(origin, destination, language);
 
-        return Route.builder()
-                .overviewPolylines(overviewPolylines)
-                .build();
+        if (directions.isPresent()) {
+            List<String> overviewPolylines = stream(directions.get().routes)
+                    .map(googleMapsRoute -> googleMapsRoute.overviewPolyline.getEncodedPath()).collect(toList());
+
+            return Optional.of(Route.builder()
+                    .overviewPolylines(overviewPolylines)
+                    .build());
+        } else {
+            return Optional.empty();
+        }
     }
 
 }

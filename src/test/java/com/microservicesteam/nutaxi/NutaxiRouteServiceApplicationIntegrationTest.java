@@ -14,6 +14,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Optional;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Rule;
@@ -64,9 +66,9 @@ public class NutaxiRouteServiceApplicationIntegrationTest {
 
     @Test
     public void getRoute() throws Exception {
-        when(mockRouteService.getRoute(anyString(), anyString(), anyString())).thenReturn(Route.builder()
+        when(mockRouteService.getRoute(anyString(), anyString(), anyString())).thenReturn(Optional.of(Route.builder()
                 .overviewPolylines(newArrayList(DUMMY_POLYLINE))
-                .build());
+                .build()));
 
         mockMvc.perform(get("/api/route")
                 .accept(APPLICATION_JSON)

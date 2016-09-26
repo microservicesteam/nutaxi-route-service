@@ -22,7 +22,8 @@ public class RouteController {
     @GetMapping
     public Route route(@RequestParam String origin, @RequestParam String destination, Locale locale) {
         LOGGER.debug("Querying route from '{}' to '{}' with locale {}", origin, destination, locale.getLanguage());
-        return routeService.getRoute(origin, destination, locale.getLanguage());
+        return routeService.getRoute(origin, destination, locale.getLanguage())
+                .orElseThrow(() -> new RuntimeException());
     }
 
 }

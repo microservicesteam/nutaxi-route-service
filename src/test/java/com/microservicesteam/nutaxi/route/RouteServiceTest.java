@@ -4,6 +4,8 @@ import static org.apache.commons.lang3.RandomStringUtils.random;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
+import java.util.Optional;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +15,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.EncodedPolyline;
-import com.microservicesteam.nutaxi.route.googlemaps.GoogleMapsRouteDetails;
 import com.microservicesteam.nutaxi.route.googlemaps.GoogleMapsRouteService;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -32,26 +33,34 @@ public class RouteServiceTest {
     }
 
     @Test
-    public void test() {
-        DirectionsResult result = getResult();
+    public void shouldReturnWithRoute() {
+        when(googleMapsRouteService.getDirections("Budapest", "Szeged", "hu"))
+                .thenReturn(Optional.of(getDirections()));
 
-        when(googleMapsRouteService.getRoute("Budapest", "Szeged", "hu"))
-                .thenReturn(GoogleMapsRouteDetails.builder().response(result).build());
+        Optional<Route> route = underTest.getRoute("Budapest", "Szeged", "hu");
 
-        Route route = underTest.getRoute("Budapest", "Szeged", "hu");
-
-        assertThat(route.getOverviewPolylines()).hasSize(1);
-        assertThat(route.getOverviewPolylines().get(0)).isEqualTo(POLYLINE);
-
+        assertThat(route.isPresent()).isTrue();
+        assertThat(route.get().getOverviewPolylines()).hasSize(1);
+        assertThat(route.get().getOverviewPolylines().get(0)).isEqualTo(POLYLINE);
     }
 
-    private DirectionsResult getResult() {
+    @Test
+    public void shouldNotReturnWithRouteWhenNoGoogleDirectionReturned() {
+        when(googleMapsRouteService.getDirections("Budapest", "Szeged", "hu"))
+                .thenReturn(Optional.empty());
+
+        Optional<Route> route = underTest.getRoute("Budapest", "Szeged", "hu");
+
+        assertThat(route.isPresent()).isFalse();
+    }
+
+    private static DirectionsResult getDirections() {
         DirectionsResult result = new DirectionsResult();
         result.routes = new DirectionsRoute[] { getRoute() };
         return result;
     }
 
-    private DirectionsRoute getRoute() {
+    private static DirectionsRoute getRoute() {
         DirectionsRoute directionsRoute = new DirectionsRoute();
         directionsRoute.overviewPolyline = new EncodedPolyline(POLYLINE);
         return directionsRoute;
