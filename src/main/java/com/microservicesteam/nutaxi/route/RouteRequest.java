@@ -19,6 +19,8 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class RouteRequest implements Serializable {
 
+    private static final long serialVersionUID = -1116746512744771963L;
+
     @Getter
     private String origin;
 

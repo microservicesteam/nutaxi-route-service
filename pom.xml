@@ -51,7 +51,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-redis</artifactId>
-        </dependency>        
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -309,8 +309,10 @@
                                     <element>CLASS</element>
                                     <excludes>
                                         <exclude>com.microservicesteam.nutaxi.NutaxiRouteServiceApplication</exclude>
-                                        <exclude>com.microservicesteam.nutaxi.route.googlemaps.GoogleMapsRouteDetails</exclude>
+                                        <exclude>com.microservicesteam.nutaxi.route.Route</exclude>
+                                        <exclude>com.microservicesteam.nutaxi.route.RouteRequest</exclude>
                                         <exclude>com.microservicesteam.nutaxi.route.googlemaps.GoogleMapsDirectionsRequest</exclude>
+                                        <exclude>com.microservicesteam.nutaxi.infrastructure.DefaultCacheErrorHandler</exclude>
                                     </excludes>
                                     <limits>
                                         <limit>

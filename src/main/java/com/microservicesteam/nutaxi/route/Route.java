@@ -20,6 +20,8 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class Route implements Serializable {
 
+    private static final long serialVersionUID = -962505687214057695L;
+
     @Getter
     private List<String> overviewPolylines;
 
