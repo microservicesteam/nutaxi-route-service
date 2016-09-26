@@ -2,6 +2,7 @@ package com.microservicesteam.nutaxi;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -20,7 +21,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -65,8 +65,8 @@ public class NutaxiRouteServiceApplicationIntegrationTest {
     }
 
     @Test
-    public void getRoute() throws Exception {
-        when(mockRouteService.getRoute(Mockito.anyObject())).thenReturn(Optional.of(Route.builder()
+    public void shouldReturnWithRouteWhenGoogleDirectionIsPresent() throws Exception {
+        when(mockRouteService.getRoute(anyObject())).thenReturn(Optional.of(Route.builder()
                 .overviewPolylines(newArrayList(DUMMY_POLYLINE))
                 .build()));
 
@@ -80,6 +80,17 @@ public class NutaxiRouteServiceApplicationIntegrationTest {
                         fieldWithPath("overviewPolylines")
                                 .type(ARRAY)
                                 .description("Original request details sent to Google maps API"))));
+    }
+
+    @Test
+    public void shouldReturnWithResourceNotFoundWhenGoogleDirectionIsNotPresent() throws Exception {
+        when(mockRouteService.getRoute(anyObject())).thenReturn(Optional.empty());
+
+        mockMvc.perform(get("/api/route")
+                .accept(APPLICATION_JSON)
+                .param("origin", "Budapest Futó u. 47")
+                .param("destination", "Budapest Corvin-negyed"))
+                .andExpect(status().is4xxClientError());
     }
 
 }

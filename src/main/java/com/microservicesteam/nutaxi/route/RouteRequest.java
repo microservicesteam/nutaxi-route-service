@@ -1,5 +1,7 @@
 package com.microservicesteam.nutaxi.route;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +17,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class RouteRequest {
+public class RouteRequest implements Serializable {
 
     @Getter
     private String origin;

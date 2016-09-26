@@ -1,5 +1,6 @@
 package com.microservicesteam.nutaxi.route;
 
+import java.io.Serializable;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Route {
+public class Route implements Serializable {
 
     @Getter
     private List<String> overviewPolylines;

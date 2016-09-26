@@ -32,7 +32,7 @@ public class NutaxiRouteServiceApplicationTest {
         assertThat(eurekaInstanceConfig.getNonSecurePort()).isEqualTo(12345);
     }
 
-    private InetUtils getINetUtils() {
+    private static InetUtils getINetUtils() {
         return new InetUtils(new InetUtilsProperties());
     }
 

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.google.maps.model.DirectionsResult;
@@ -22,19 +23,24 @@ public class RouteService {
         this.googleMapsRouteService = googleMapsRouteService;
     }
 
+    @Cacheable("routes")
     public Optional<Route> getRoute(RouteRequest request) {
         Optional<DirectionsResult> directions = googleMapsRouteService.getDirections(request);
 
         if (directions.isPresent()) {
-            List<String> overviewPolylines = stream(directions.get().routes)
-                    .map(googleMapsRoute -> googleMapsRoute.overviewPolyline.getEncodedPath()).collect(toList());
-
-            return Optional.of(Route.builder()
-                    .overviewPolylines(overviewPolylines)
-                    .build());
+            return mapDirectionsToRoute(directions.get());
         } else {
             return Optional.empty();
         }
+    }
+
+    private static Optional<Route> mapDirectionsToRoute(DirectionsResult directionsResult) {
+        List<String> overviewPolylines = stream(directionsResult.routes)
+                .map(googleMapsRoute -> googleMapsRoute.overviewPolyline.getEncodedPath()).collect(toList());
+
+        return Optional.of(Route.builder()
+                .overviewPolylines(overviewPolylines)
+                .build());
     }
 
 }
