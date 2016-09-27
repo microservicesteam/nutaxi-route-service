@@ -2,16 +2,10 @@ package com.microservicesteam.nutaxi.infrastructure;
 
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
-import org.meanbean.test.Configuration;
-import org.meanbean.test.ConfigurationBuilder;
 import org.meanbean.test.EqualsMethodTester;
 import org.meanbean.test.HashCodeMethodTester;
 
 public abstract class PojoTester {
-
-    protected final Configuration lotsOfTests = new ConfigurationBuilder()
-            .iterations(500)
-            .build();
 
     protected final BeanTester beanTester = new BeanTester();
 
@@ -27,7 +21,7 @@ public abstract class PojoTester {
 
         hashCodeMethodTester.testHashCodeMethod(getPojoClass());
 
-        equalsMethodTester.testEqualsMethod(getPojoClass(), lotsOfTests);
+        equalsMethodTester.testEqualsMethod(getPojoClass());
     }
 
 }
