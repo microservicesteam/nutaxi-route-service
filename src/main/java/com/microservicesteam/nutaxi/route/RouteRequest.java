@@ -1,6 +1,6 @@
-package com.microservicesteam.nutaxi.route.googlemaps;
+package com.microservicesteam.nutaxi.route;
 
-import com.google.maps.model.DirectionsResult;
+import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,14 +17,17 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class GoogleMapsRouteDetails {
+public class RouteRequest implements Serializable {
+
+    private static final long serialVersionUID = -1116746512744771963L;
 
     @Getter
-    private GoogleMapsDirectionsRequest request;
+    private String origin;
 
     @Getter
-    private DirectionsResult response;
+    private String destination;
 
     @Getter
-    private String error;
+    private String language;
+
 }
