@@ -41,6 +41,7 @@
         <jacoco-maven-plugin.version>0.7.7.201606060606</jacoco-maven-plugin.version>
         <versioneye-maven-plugin.version>3.10.2</versioneye-maven-plugin.version>
         <meanbean.version>2.0.3</meanbean.version>
+        <embedded-redis.version>0.6</embedded-redis.version>
     </properties>
 
     <dependencies>
@@ -108,6 +109,13 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.orange.redis-embedded</groupId>
+            <artifactId>embedded-redis</artifactId>
+            <version>${embedded-redis.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
