@@ -1,6 +1,7 @@
 package com.microservicesteam.nutaxi;
 
-import static com.google.common.collect.Lists.newArrayList;
+import static com.microservicesteam.nutaxi.route.RouteFactory.route;
+import static com.microservicesteam.nutaxi.route.googlemaps.DirectionsResultFactory.polyline;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.when;
@@ -16,7 +17,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.Optional;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -32,15 +32,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.microservicesteam.nutaxi.route.Route;
 import com.microservicesteam.nutaxi.route.RouteService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest
 @ActiveProfiles("test")
 public class NutaxiRouteServiceApplicationIntegrationTest {
-
-    private static final String DUMMY_POLYLINE = RandomStringUtils.random(10);
 
     @Rule
     public JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation("target/generated-snippets");
@@ -66,16 +63,14 @@ public class NutaxiRouteServiceApplicationIntegrationTest {
 
     @Test
     public void shouldReturnWithRouteWhenGoogleDirectionIsPresent() throws Exception {
-        when(mockRouteService.getRoute(anyObject())).thenReturn(Optional.of(Route.builder()
-                .overviewPolylines(newArrayList(DUMMY_POLYLINE))
-                .build()));
+        when(mockRouteService.getRoute(anyObject())).thenReturn(Optional.of(route()));
 
         mockMvc.perform(get("/api/route")
                 .accept(APPLICATION_JSON)
                 .param("origin", "Budapest Futó u. 47")
                 .param("destination", "Budapest Corvin-negyed"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.overviewPolylines[0]", equalTo(DUMMY_POLYLINE)))
+                .andExpect(jsonPath("$.overviewPolylines[0]", equalTo(polyline())))
                 .andDo(document("route", responseFields(
                         fieldWithPath("overviewPolylines")
                                 .type(ARRAY)
