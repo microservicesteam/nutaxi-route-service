@@ -1,6 +1,7 @@
 package com.microservicesteam.nutaxi.infrastructure;
 
 import static com.microservicesteam.nutaxi.infrastructure.NutaxiRouteServiceApplicationTestConfiguration.GOOGLE_MAPS_ROUTE_SERVICE;
+import static com.microservicesteam.nutaxi.route.RouteRequestFactory.routeRequest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.reset;
@@ -16,7 +17,6 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.microservicesteam.nutaxi.route.RouteRequest;
 import com.microservicesteam.nutaxi.route.RouteService;
 
 import redis.embedded.RedisServer;
@@ -64,16 +64,8 @@ public class CacheConfigurationTest {
 
     }
 
-    private static RouteRequest getRouteRequest() {
-        return RouteRequest.builder()
-                .origin("Budapest")
-                .destination("Szeged")
-                .language("hu")
-                .build();
-    }
-
     private void callRouteService() {
-        routeService.getRoute(getRouteRequest());
+        routeService.getRoute(routeRequest());
     }
 
     private static void prepareForTheNextCall() {
@@ -81,11 +73,11 @@ public class CacheConfigurationTest {
     }
 
     private static void googleMapsServiceCalled() {
-        verify(GOOGLE_MAPS_ROUTE_SERVICE).getDirections(getRouteRequest());
+        verify(GOOGLE_MAPS_ROUTE_SERVICE).getDirections(routeRequest());
     }
 
     private static void googleMapsServiceNotCalled() {
-        verify(GOOGLE_MAPS_ROUTE_SERVICE, never()).getDirections(getRouteRequest());
+        verify(GOOGLE_MAPS_ROUTE_SERVICE, never()).getDirections(routeRequest());
     }
 
 }
