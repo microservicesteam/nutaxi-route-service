@@ -1,7 +1,6 @@
 package com.microservicesteam.nutaxi;
 
 import static com.microservicesteam.nutaxi.route.RouteFactory.route;
-import static com.microservicesteam.nutaxi.route.googlemaps.DirectionsResultFactory.polyline;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.when;
@@ -11,6 +10,8 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 import static org.springframework.restdocs.payload.JsonFieldType.ARRAY;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -39,6 +40,8 @@ import com.microservicesteam.nutaxi.route.RouteService;
 @ActiveProfiles("test")
 public class NutaxiRouteServiceApplicationIntegrationTest {
 
+    public static final String EXAMPLE_POLYLINE = "ioy`HuolsBjADlDTsArFeBzGe@tBy@fDWTQL";
+    
     @Rule
     public JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation("target/generated-snippets");
 
@@ -63,18 +66,24 @@ public class NutaxiRouteServiceApplicationIntegrationTest {
 
     @Test
     public void shouldReturnWithRouteWhenGoogleDirectionIsPresent() throws Exception {
-        when(mockRouteService.getRoute(anyObject())).thenReturn(Optional.of(route()));
+        when(mockRouteService.getRoute(anyObject())).thenReturn(Optional.of(route(EXAMPLE_POLYLINE)));
 
         mockMvc.perform(get("/api/route")
                 .accept(APPLICATION_JSON)
                 .param("origin", "Budapest Futó u. 47")
                 .param("destination", "Budapest Corvin-negyed"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.overviewPolylines[0]", equalTo(polyline())))
-                .andDo(document("route", responseFields(
-                        fieldWithPath("overviewPolylines")
-                                .type(ARRAY)
-                                .description("Original request details sent to Google maps API"))));
+                .andExpect(jsonPath("$.overviewPolylines[0]", equalTo(EXAMPLE_POLYLINE)))
+                .andDo(document("route", 
+                        requestParameters(
+                                parameterWithName("origin")
+                                    .description("Starting point of the requested route"),
+                                parameterWithName("destination")
+                                    .description("End point of the requested route")),
+                        responseFields(
+                                fieldWithPath("overviewPolylines")
+                                    .type(ARRAY)
+                                    .description("Encoded route polyline from Google Maps"))));
     }
 
     @Test

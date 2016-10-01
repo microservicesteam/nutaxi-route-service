@@ -13,5 +13,11 @@ public final class RouteFactory {
                 .overviewPolylines(newArrayList(polyline()))
                 .build();
     }
+    
+    public static Route route(String polyline) {
+        return Route.builder()
+                .overviewPolylines(newArrayList(polyline))
+                .build();
+    }
 
 }

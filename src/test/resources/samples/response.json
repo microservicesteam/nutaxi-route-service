@@ -52,7 +52,7 @@
 							"transitDetails": null
 						},
 						{
-							"htmlInstructions": "Forduljon <b>jobbra</b>, a következő útra: <b>Üllői út</b>/<b>4. út</b><div style="font-size:0.9em">A cél jobbra lesz</div>",
+							"htmlInstructions": "Forduljon <b>jobbra</b>, a következő útra: <b>Üllői út</b>/<b>4. út</b><div style=\"font-size:0.9em\">A cél jobbra lesz</div>",
 							"distance": {
 								"inMeters": 370,
 								"humanReadable": "0,4 km"
@@ -118,4 +118,5 @@
 			"fare": null,
 			"warnings": []
 		}
-	[{"summary":"Futó u. és Üllői út/4. út","legs":[{"steps":[{"htmlInstructions":"Haladjon tovább <b>dél</b> felé itt: <b>Futó u.</b>, <b>Üllői út</b>/<b>4. út</b> irányába","distance":{"inMeters":139,"humanReadable":"0,1 km"},"duration":{"inSeconds":37,"humanReadable":"1 perc"},"startLocation":{"lat":47.4854874,"lng":19.0746663},"endLocation":{"lat":47.4842446,"lng":19.0745263},"steps":null,"polyline":{"encodedPath":"ioy`HuolsBL?|@D~@FlBL"},"travelMode":"DRIVING","transitDetails":null},{"htmlInstructions":"Forduljon <b>jobbra</b>, a következő útra: <b>Üllői út</b>/<b>4. út</b><div style="font-size:0.9em">A cél jobbra lesz</div>","distance":{"inMeters":370,"humanReadable":"0,4 km"},"duration":{"inSeconds":81,"humanReadable":"1 perc"},"startLocation":{"lat":47.4842446,"lng":19.0745263},"endLocation":{"lat":47.48585869999999,"lng":19.0702848},"steps":null,"polyline":{"encodedPath":"ogy`HynlsB{@hDWhAi@nB{@jDEP_@bBy@fDWTQL"},"travelMode":"DRIVING","transitDetails":null}],"distance":{"inMeters":509,"humanReadable":"0,5 km"},"duration":{"inSeconds":118,"humanReadable":"2 perc"},"durationInTraffic":null,"arrivalTime":null,"departureTime":null,"startLocation":{"lat":47.4854874,"lng":19.0746663},"endLocation":{"lat":47.48585869999999,"lng":19.0702848},"startAddress":"Budapest, Futó u. 47, 1082 Magyarország","endAddress":"Budapest, Corvin-negyed, 1085 Magyarország"}],"waypointOrder":[],"overviewPolyline":{"encodedPath":"ioy`HuolsBjADlDTsArFeBzGe@tBy@fDWTQL"},"bounds":{"northeast":{"lat":47.48585869999999,"lng":19.0746663},"southwest":{"lat":47.4842446,"lng":19.0702848}},"copyrights":"Térképadatok ©2016 Google","fare":null,"warnings":[]}]}
+	]
+}

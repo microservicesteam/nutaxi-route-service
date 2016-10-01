@@ -1,1 +1,50 @@
-= Test API guide
+= Nutaxi Route Service API
+
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:sectlinks:
+
+
+[[overview]]
+= Overview
+
+Route service API overview
+
+
+[[resources]]
+= Resources
+
+[[route]]
+== Route
+
+[[route-desc]]
+=== Getting a route
+
+A `GET` request will list all of the service's notes.
+
+[[route-request]]
+==== Request structure
+
+include::{snippets}/route/http-request.adoc[]
+
+[[route-request-parameters]]
+==== Parameters
+
+include::{snippets}/route/request-parameters.adoc[]
+
+[[route-response]]
+==== Response structure
+
+include::{snippets}/route/response-fields.adoc[]
+
+[[route-example-request]]
+==== Example request
+
+include::{snippets}/route/curl-request.adoc[]
+
+[[route-example-response]]
+==== Example response
+
+include::{snippets}/route/http-response.adoc[]
+
