@@ -3,6 +3,7 @@ package com.microservicesteam.nutaxi.infrastructure;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -13,16 +14,20 @@ import org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CloudConfigurationTest {
+
     private CloudConfiguration underTest;
 
     @Mock
     private EmbeddedServletContainerRandomPortListener portListener;
 
+    @Before
+    public void init() {
+        underTest = new CloudConfiguration();
+    }
+
     @Test
     public void shouldConfigureEurekaInstanceConfigBean() {
         when(portListener.getPort()).thenReturn(12345);
-
-        underTest = new CloudConfiguration();
 
         EurekaInstanceConfigBean eurekaInstanceConfig = underTest.eurekaInstanceConfig(getINetUtils(), portListener);
 
