@@ -24,7 +24,7 @@ import redis.embedded.RedisServer;
 @ActiveProfiles("test")
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { NutaxiRouteServiceApplicationTestConfiguration.class, CacheConfiguration.class })
-public class CacheConfigurationTest {
+public class CacheConfigurationIntegrationTest {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
@@ -61,7 +61,6 @@ public class CacheConfigurationTest {
 
         callRouteService();
         googleMapsServiceNotCalled();
-
     }
 
     private void callRouteService() {

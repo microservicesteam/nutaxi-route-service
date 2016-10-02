@@ -4,7 +4,6 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
 
 import java.util.Locale;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,17 +27,13 @@ public class RouteController {
     public ResponseEntity<Route> route(@RequestParam String origin, @RequestParam String destination, Locale locale) {
         LOGGER.debug("Querying route from '{}' to '{}' with locale {}", origin, destination, locale.getLanguage());
 
-        Optional<Route> route = routeService.getRoute(RouteRequest.builder()
+        return routeService.getRoute(RouteRequest.builder()
                 .origin(origin)
                 .destination(destination)
                 .language(locale.getLanguage())
-                .build());
-
-        if (route.isPresent()) {
-            return new ResponseEntity<>(route.get(), OK);
-        } else {
-            return new ResponseEntity<>(NOT_FOUND);
-        }
+                .build())
+                .map(route -> new ResponseEntity<>(route, OK))
+                .orElse(new ResponseEntity<>(NOT_FOUND));
     }
 
 }
