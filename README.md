@@ -1,6 +1,6 @@
 # nutaxi-route-service
 
-[![Build Status of nutaxi-route-service](https://travis-ci.org/microservicesteam/nutaxi-route-service.svg?branch=master)](https://travis-ci.org/microservicesteam/nutaxi-route-service) [![Code covarage of nutaxi-route-service](https://codecov.io/gh/microservicesteam/nutaxi-route-service/branch/master/graph/badge.svg)](https://codecov.io/gh/microservicesteam/nutaxi-route-service) [![Dependency Status](https://www.versioneye.com/user/projects/57d03f4d864739000ef97460/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57d03f4d864739000ef97460)
+[![Build Status of nutaxi-route-service](https://travis-ci.org/microservicesteam/nutaxi-route-service.svg?branch=master)](https://travis-ci.org/microservicesteam/nutaxi-route-service) [![Code covarage of nutaxi-route-service](https://codecov.io/gh/microservicesteam/nutaxi-route-service/branch/master/graph/badge.svg)](https://codecov.io/gh/microservicesteam/nutaxi-route-service) [![Dependency Status](https://www.versioneye.com/user/projects/57d03f4d864739000ef97460/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57d03f4d864739000ef97460) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/dee0fb8bbb5e44bb9cb72466f748ecab)](https://www.codacy.com/app/szogibalu/nutaxi-route-service?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=microservicesteam/nutaxi-route-service&amp;utm_campaign=Badge_Grade)
 
 
 Routing service is responsible to provide a route for origin-destination pair
