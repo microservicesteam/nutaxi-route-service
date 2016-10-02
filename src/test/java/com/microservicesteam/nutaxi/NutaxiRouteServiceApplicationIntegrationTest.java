@@ -5,6 +5,8 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.payload.JsonFieldType.ARRAY;
@@ -40,7 +42,7 @@ import com.microservicesteam.nutaxi.route.RouteService;
 @ActiveProfiles("test")
 public class NutaxiRouteServiceApplicationIntegrationTest {
 
-    public static final String EXAMPLE_POLYLINE = "ioy`HuolsBjADlDTsArFeBzGe@tBy@fDWTQL";
+    public static final String EXAMPLE_POLYLINE = "{b{`HmgjsBkFdAQcAwAaI}@}EVMfDgAdE_AbBk@";
     
     @Rule
     public JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation("target/generated-snippets");
@@ -70,8 +72,8 @@ public class NutaxiRouteServiceApplicationIntegrationTest {
 
         mockMvc.perform(get("/api/route")
                 .accept(APPLICATION_JSON)
-                .param("origin", "Budapest Futó u. 47")
-                .param("destination", "Budapest Corvin-negyed"))
+                .param("origin", "Budapest Puskin utca 8")
+                .param("destination", "Budapest Vas utca 19"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.overviewPolylines[0]", equalTo(EXAMPLE_POLYLINE)))
                 .andDo(document("route", 
@@ -80,10 +82,14 @@ public class NutaxiRouteServiceApplicationIntegrationTest {
                                     .description("Starting point of the requested route"),
                                 parameterWithName("destination")
                                     .description("End point of the requested route")),
+                        requestHeaders(
+                                headerWithName("Accept-Language")
+                                    .description("(Optional) Desired language of the route step descriptions (currently has no direct affect on the response)")
+                                    .optional()),
                         responseFields(
                                 fieldWithPath("overviewPolylines")
                                     .type(ARRAY)
-                                    .description("Encoded route polyline from Google Maps"))));
+                                    .description("Encoded route polylines from Google Maps"))));
     }
 
     @Test
@@ -92,8 +98,8 @@ public class NutaxiRouteServiceApplicationIntegrationTest {
 
         mockMvc.perform(get("/api/route")
                 .accept(APPLICATION_JSON)
-                .param("origin", "Budapest Futó u. 47")
-                .param("destination", "Budapest Corvin-negyed"))
+                .param("origin", "Budapest Puskin utca 8")
+                .param("destination", "Budapest Vas utca 19"))
                 .andExpect(status().is4xxClientError());
     }
 

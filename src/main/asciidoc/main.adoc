@@ -9,7 +9,8 @@
 [[overview]]
 = Overview
 
-Route service API overview
+Nutaxi route service is capable to return simple routes between two given geological locations. The response route is represented in simple polylines defined by Google Maps (see more details here: https://developers.google.com/maps/documentation/utilities/polylinealgorithm[
+Encoded Polyline Algorithm Format])
 
 
 [[resources]]
@@ -21,7 +22,7 @@ Route service API overview
 [[route-desc]]
 === Getting a route
 
-A `GET` request will list all of the service's notes.
+A `GET` request will return possible routes between the two given endpoints called `origin` and `destination`.
 
 [[route-request]]
 ==== Request structure
@@ -32,6 +33,12 @@ include::{snippets}/route/http-request.adoc[]
 ==== Parameters
 
 include::{snippets}/route/request-parameters.adoc[]
+
+[[route-request-headers]]
+==== Headers
+
+include::{snippets}/route/request-headers.adoc[]
+
 
 [[route-response]]
 ==== Response structure
