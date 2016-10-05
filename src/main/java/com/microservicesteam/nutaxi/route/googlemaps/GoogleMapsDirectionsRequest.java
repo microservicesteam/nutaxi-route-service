@@ -34,16 +34,12 @@ public class GoogleMapsDirectionsRequest {
     @Getter
     private Unit units;
 
-    @Getter
-    private String language;
-
     public DirectionsApiRequest toDirectionsApiRequest(GeoApiContext context) {
         return DirectionsApi.newRequest(context)
                 .origin(origin)
                 .destination(destination)
                 .mode(mode)
-                .units(units)
-                .language(language);
+                .units(units);
     }
 
 }

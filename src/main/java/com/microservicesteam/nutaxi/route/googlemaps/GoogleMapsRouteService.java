@@ -32,7 +32,6 @@ public class GoogleMapsRouteService {
                 .destination(routeRequest.getDestination())
                 .mode(DRIVING)
                 .units(METRIC)
-                .language(routeRequest.getLanguage())
                 .build();
 
         try {

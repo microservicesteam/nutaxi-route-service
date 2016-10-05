@@ -9,7 +9,6 @@ public final class RouteRequestFactory {
         return RouteRequest.builder()
                 .origin("Budapest")
                 .destination("Szeged")
-                .language("hu")
                 .build();
     }
 }

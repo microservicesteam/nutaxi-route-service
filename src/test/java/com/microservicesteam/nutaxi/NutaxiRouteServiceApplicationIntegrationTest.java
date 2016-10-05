@@ -5,8 +5,6 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
-import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.payload.JsonFieldType.ARRAY;
@@ -82,10 +80,6 @@ public class NutaxiRouteServiceApplicationIntegrationTest {
                                     .description("Starting point of the requested route"),
                                 parameterWithName("destination")
                                     .description("End point of the requested route")),
-                        requestHeaders(
-                                headerWithName("Accept-Language")
-                                    .description("(Optional) Desired language of the route step descriptions (currently has no direct affect on the response)")
-                                    .optional()),
                         responseFields(
                                 fieldWithPath("overviewPolylines")
                                     .type(ARRAY)

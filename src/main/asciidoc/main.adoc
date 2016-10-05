@@ -34,12 +34,6 @@ include::{snippets}/route/http-request.adoc[]
 
 include::{snippets}/route/request-parameters.adoc[]
 
-[[route-request-headers]]
-==== Headers
-
-include::{snippets}/route/request-headers.adoc[]
-
-
 [[route-response]]
 ==== Response structure
 
