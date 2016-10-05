@@ -24,7 +24,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.restdocs.JUnitRestDocumentation;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -44,9 +43,6 @@ public class NutaxiRouteServiceApplicationIntegrationTest {
 
     @MockBean
     private RouteService mockRouteService;
-
-    @MockBean
-    private RedisConnectionFactory redisConnectionFactory;
 
     @Autowired
     private WebApplicationContext context;
