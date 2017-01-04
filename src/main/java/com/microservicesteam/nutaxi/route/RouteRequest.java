@@ -27,7 +27,4 @@ public class RouteRequest implements Serializable {
     @Getter
     private String destination;
 
-    @Getter
-    private String language;
-
 }

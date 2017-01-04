@@ -3,8 +3,6 @@ package com.microservicesteam.nutaxi.route;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
 
-import java.util.Locale;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +22,12 @@ public class RouteController {
     private RouteService routeService;
 
     @GetMapping
-    public ResponseEntity<Route> route(@RequestParam String origin, @RequestParam String destination, Locale locale) {
-        LOGGER.debug("Querying route from '{}' to '{}' with locale {}", origin, destination, locale.getLanguage());
+    public ResponseEntity<Route> route(@RequestParam String origin, @RequestParam String destination) {
+        LOGGER.debug("Querying route from '{}' to '{}'", origin, destination);
 
         return routeService.getRoute(RouteRequest.builder()
                 .origin(origin)
                 .destination(destination)
-                .language(locale.getLanguage())
                 .build())
                 .map(route -> new ResponseEntity<>(route, OK))
                 .orElse(new ResponseEntity<>(NOT_FOUND));
